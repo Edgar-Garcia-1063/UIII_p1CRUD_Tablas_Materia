@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+    <div class="row"> <!-- la filas-->
+    <div class="col-sm-12 col-md-4 col-lg-4 xl-4"> <!-- Columna izquierda-->
+
+        <h1> Mama </h1>
+        <div class="card">
+          <div class="card-body">
+            <from action="registrarmateria/" method="POST"> {% csrf_token %}
+              <div class="form-group">
+                <input type="text" id="txtcodigo" name="txtcodigo" 
+                placeholder="codigo materias" minlenght="1" maxleght="6" required><br>
+          </div>
+              <div class="form-group py-3">
+            <input type="text" id="txtnombre" name="txtnombre" 
+            placeholder="Nombre materias" minlenght="1" maxleght="100" required><br>
+      </div>
+            <div class="form-group py-2">
+            <input type="text" id="numcreditos" name="numcreditos" 
+            placeholder="creditos materia" minlenght="1" maxleght="100" required><br>
+  </div>
+            <div class="form-group">
+            <button type="submit" class="btn btn-primary">Primary</button>
+  </div>
+
+        </div>
+      </div>
+    </div><!-- Columna izquierda-->
+
+    <div class="col-sm-12 col-md-8 col-lg-8 xl-8"> <!-- Columna derecha -->
+        <h1> Papa </h1>
+        <!-- La tabla -->
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Codigo </th>
+                <th scope="col">Nombre </th>
+                <th scope="col">Creditos </th>
+              </tr>
+            </thead>
+            <tbody>
+              {%for m in mismaterias%}
+              <tr>
+                <td>
+                  {{forloop.counter}}
+                </td>
+                  <td>
+                  {{m.codigo}}
+                </td>
+                <td>
+                  {{m.nombre}}
+                </td>
+                <td>
+                {{m.creditos}}    
+              </td>
+              <td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        <!-- La tabla -->
+    </div><!-- Columna derecha -->
+    </div>
+{% endblock %}
